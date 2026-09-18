@@ -9,8 +9,11 @@ def _ipv4_only_getaddrinfo(*args, **kwargs):
 socket.getaddrinfo = _ipv4_only_getaddrinfo
 
 import pymongo
+from dotenv import load_dotenv
+import os
+load_dotenv()
+uri = os.getenv("MONGO_URL")
 
-uri = "mongodb+srv://anuj:Admin123@cluster0.vh72p9c.mongodb.net/?appName=Cluster0"
 client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=10000)
 
 try:
